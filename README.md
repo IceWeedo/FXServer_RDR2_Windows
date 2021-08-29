@@ -4,7 +4,7 @@ Contiennent uniquement les fichiers de base **FXServer** pour la création d'un 
 
 Version pour **Grand Theft Auto V** disponible [ici](https://github.com/IceWeedo/FXServer_GTA5_Windows)
 
-En cas de problème je suis disponible sur [Discord](https://discord.com/invite/jeF2phbHzC)
+En cas de problème je suis disponible sur [Discord](https://discord.com/invite/xPGrCh5)
 
 ## - Installation
 
