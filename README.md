@@ -8,7 +8,7 @@ En cas de problème je suis disponible sur [Discord](https://discord.com/invite/
 
 ## - Installation
 
-  * Télécharger l'archive [ici](https://github.com/IceWeedo/FXServer_GTA5_Windows/releases/latest)
+  * Télécharger l'archive [ici](https://github.com/IceWeedo/FXServer_RDR2_Windows/archive/refs/heads/main.zip)
   * Extraire l'archive à la racine de votre disque local **C:**
     * (C:\FXServer)
 
@@ -16,7 +16,7 @@ En cas de problème je suis disponible sur [Discord](https://discord.com/invite/
     * (C:\FXServer\ _commonredist)
 
   * Modifier le fichier **server.cfg** avec vos informations: **Nom du serveur**, [Clé FiveM](https://keymaster.fivem.net), [Clé API Steam](https://steamcommunity.com/dev/apikey)
-    * (C:\FXServer\server.cfg)
+    * (C:\FXServer\cfg\server.cfg)
 
   * Exécuter **run_with_txadmin.bat** pour utilisé txAdmin
     * (C:\FXServer\run_with_txadmin.bat)
