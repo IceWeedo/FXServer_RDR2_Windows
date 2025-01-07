@@ -1,8 +1,8 @@
 # FXServer GTA5 Windows
 
-Contiennent uniquement les fichiers de base **FXServer** pour la création d'un serveur **Grand Theft Auto V (GTA5)** sur **Windows**
+Contiennent uniquement les fichiers de base **FXServer** pour la création d'un serveur **Red Dead Redemption 2 (RDR2)** sur **Windows**
 
-Version pour **Red Dead Redemption 2** disponible [ici](https://github.com/IceWeedo/FXServer_RDR2_Windows)
+Version pour **Grand Theft Auto V** disponible [ici](https://github.com/IceWeedo/FXServer_GTA5_Windows)
 
 En cas de problème je suis disponible sur [Discord](https://discord.com/invite/xPGrCh5)
 
