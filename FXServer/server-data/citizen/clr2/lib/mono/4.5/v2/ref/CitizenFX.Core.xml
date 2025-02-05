@@ -7721,10 +7721,14 @@
             ```
             [
             {
-            "name": "cmdlist"
+            "name": "cmdlist",
+            "resource": "resource",
+            "arity" = -1,
             },
             {
             "name": "command1"
+            "resource": "resource_2",
+            "arity" = -1,
             }
             ]
             ```
@@ -7742,6 +7746,30 @@
             </param>
             <returns>
             The resource name as a `string`
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Shared.Native.Natives.GetResourceCommands(CitizenFX.Core.CString)">
+            <summary>
+            Returns all commands registered by the specified resource.
+            The data returned adheres to the following layout:
+            
+            ```
+            [
+            {
+            "name": "cmdlist",
+            "resource": "example_resource",
+            "arity" = -1,
+            },
+            {
+            "name": "command1"
+            "resource": "example_resource2",
+            "arity" = -1,
+            }
+            ]
+            ```
+            </summary>
+            <returns>
+            An object containing registered commands.
             </returns>
         </member>
         <member name="M:CitizenFX.Shared.Native.Natives.GetResourceKvpFloat(CitizenFX.Core.CString)">
@@ -8286,10 +8314,14 @@
             ```
             [
             {
-            "name": "cmdlist"
+            "name": "cmdlist",
+            "resource": "resource",
+            "arity" = -1,
             },
             {
             "name": "command1"
+            "resource": "resource_2",
+            "arity" = -1,
             }
             ]
             ```
@@ -8298,6 +8330,27 @@
         <member name="F:CitizenFX.Shared.Native.Hash.GET_RESOURCE_BY_FIND_INDEX">
             <summary>
             GET_RESOURCE_BY_FIND_INDEX
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Shared.Native.Hash.GET_RESOURCE_COMMANDS">
+            <summary>
+            Returns all commands registered by the specified resource.
+            The data returned adheres to the following layout:
+            
+            ```
+            [
+            {
+            "name": "cmdlist",
+            "resource": "example_resource",
+            "arity" = -1,
+            },
+            {
+            "name": "command1"
+            "resource": "example_resource2",
+            "arity" = -1,
+            }
+            ]
+            ```
             </summary>
         </member>
         <member name="F:CitizenFX.Shared.Native.Hash.GET_RESOURCE_KVP_FLOAT">

@@ -544,7 +544,7 @@
             Heading to face towards, in degrees.
             </param>
             <returns>
-            A script handle for the vehicle.
+            A script handle for the vehicle, or 0 if the vehicle failed to be created.
             </returns>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.DeleteEntity(System.Int32)">
@@ -1421,6 +1421,17 @@
             GET_PED_MAX_HEALTH
             </summary>
         </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetPedRelationshipGroupHash(System.Int32)">
+            <summary>
+            Gets the current relationship group hash of a ped.
+            </summary>
+            <param name="ped">
+            The target ped
+            </param>
+            <returns>
+            The relationship group hash.
+            </returns>
+        </member>
         <member name="M:CitizenFX.Server.Native.Natives.GetPedScriptTaskCommand(System.Int32)">
             <summary>
             Gets the script task command currently assigned to the ped.
@@ -1518,6 +1529,17 @@
             </param>
             <returns>
             The fake wanted level
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetPlayerFocusPos(CitizenFX.Core.CString)">
+            <summary>
+            Gets the focus position (i.e. the position of the active camera in the game world) of a player.
+            </summary>
+            <param name="playerSrc">
+            The player to get the focus position of
+            </param>
+            <returns>
+            Returns a `Vector3` containing the focus position of the player.
             </returns>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.GetPlayerFromIndex(System.Int32)">
@@ -1757,10 +1779,14 @@
             ```
             [
             {
-            "name": "cmdlist"
+            "name": "cmdlist",
+            "resource": "resource",
+            "arity" = -1,
             },
             {
             "name": "command1"
+            "resource": "resource_2",
+            "arity" = -1,
             }
             ]
             ```
@@ -1778,6 +1804,30 @@
             </param>
             <returns>
             The resource name as a `string`
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetResourceCommands(CitizenFX.Core.CString)">
+            <summary>
+            Returns all commands registered by the specified resource.
+            The data returned adheres to the following layout:
+            
+            ```
+            [
+            {
+            "name": "cmdlist",
+            "resource": "example_resource",
+            "arity" = -1,
+            },
+            {
+            "name": "command1"
+            "resource": "example_resource2",
+            "arity" = -1,
+            }
+            ]
+            ```
+            </summary>
+            <returns>
+            An object containing registered commands.
             </returns>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.GetResourceKvpFloat(CitizenFX.Core.CString)">
@@ -1981,10 +2031,16 @@
             The door lock status for the specified vehicle.
             </returns>
         </member>
-        <member name="M:CitizenFX.Server.Native.Natives.GetVehicleDoorStatus(System.Int32)">
+        <member name="M:CitizenFX.Server.Native.Natives.GetVehicleDoorStatus(System.Int32,System.Int32)">
             <summary>
-            GET_VEHICLE_DOOR_STATUS
+            Returns the open position of the specified door on the target vehicle.
             </summary>
+            <param name="vehicle">
+            The target vehicle.
+            </param>
+            <param name="doorIndex">
+            Index of door to check (0-6).
+            </param>
             <returns>
             A number from 0 to 7.
             </returns>
@@ -2431,6 +2487,17 @@
             boolean value, depending if the player is evading his wanted level or not.
             </returns>
         </member>
+        <member name="M:CitizenFX.Server.Native.Natives.IsPlayerInFreeCamMode(CitizenFX.Core.CString)">
+            <summary>
+            IS_PLAYER_IN_FREE_CAM_MODE
+            </summary>
+            <param name="playerSrc">
+            The player to get the free camera mode status of
+            </param>
+            <returns>
+            Returns if the player is in free camera mode.
+            </returns>
+        </member>
         <member name="M:CitizenFX.Server.Native.Natives.IsPlayerUsingSuperJump(CitizenFX.Core.CString)">
             <summary>
             IS_PLAYER_USING_SUPER_JUMP
@@ -2488,7 +2555,13 @@
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.LoadPlayerCommerceDataExt(CitizenFX.Core.CString)">
             <summary>
-            Requests the commerce data from Tebex for the specified player, including the owned SKUs. Use `IS_PLAYER_COMMERCE_INFO_LOADED` to check if it has loaded.
+            Requests the commerce data from Tebex for the specified player, including the owned SKUs.
+            
+            Use [`IS_PLAYER_COMMERCE_INFO_LOADED_EXT`](#\_0x1D14F4FE) to check if it has loaded.
+            
+            This will not automatically update whenever a client purchases a package, if you want to fetch new purchases you will need to call this native again.
+            
+            This native will temporarily cache the players commerce data for 10 seconds, a call to this native after 10 seconds will re-fetch the players commerce data.
             </summary>
             <param name="playerSrc">
             The player handle
@@ -5363,6 +5436,11 @@
             GET_PED_MAX_HEALTH
             </summary>
         </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_PED_RELATIONSHIP_GROUP_HASH">
+            <summary>
+            Gets the current relationship group hash of a ped.
+            </summary>
+        </member>
         <member name="F:CitizenFX.Server.Native.Hash.GET_PED_SCRIPT_TASK_COMMAND">
             <summary>
             Gets the script task command currently assigned to the ped.
@@ -5407,6 +5485,11 @@
         <member name="F:CitizenFX.Server.Native.Hash.GET_PLAYER_FAKE_WANTED_LEVEL">
             <summary>
             Gets the current fake wanted level for a specified player. This native is used server side when using OneSync.
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_PLAYER_FOCUS_POS">
+            <summary>
+            Gets the focus position (i.e. the position of the active camera in the game world) of a player.
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.GET_PLAYER_FROM_INDEX">
@@ -5539,10 +5622,14 @@
             ```
             [
             {
-            "name": "cmdlist"
+            "name": "cmdlist",
+            "resource": "resource",
+            "arity" = -1,
             },
             {
             "name": "command1"
+            "resource": "resource_2",
+            "arity" = -1,
             }
             ]
             ```
@@ -5551,6 +5638,27 @@
         <member name="F:CitizenFX.Server.Native.Hash.GET_RESOURCE_BY_FIND_INDEX">
             <summary>
             GET_RESOURCE_BY_FIND_INDEX
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_RESOURCE_COMMANDS">
+            <summary>
+            Returns all commands registered by the specified resource.
+            The data returned adheres to the following layout:
+            
+            ```
+            [
+            {
+            "name": "cmdlist",
+            "resource": "example_resource",
+            "arity" = -1,
+            },
+            {
+            "name": "command1"
+            "resource": "example_resource2",
+            "arity" = -1,
+            }
+            ]
+            ```
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.GET_RESOURCE_KVP_FLOAT">
@@ -5672,7 +5780,7 @@
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.GET_VEHICLE_DOOR_STATUS">
             <summary>
-            GET_VEHICLE_DOOR_STATUS
+            Returns the open position of the specified door on the target vehicle.
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.GET_VEHICLE_DOORS_LOCKED_FOR_PLAYER">
@@ -5957,6 +6065,11 @@
             If the player is not wanted, it simply returns false.
             </summary>
         </member>
+        <member name="F:CitizenFX.Server.Native.Hash.IS_PLAYER_IN_FREE_CAM_MODE">
+            <summary>
+            IS_PLAYER_IN_FREE_CAM_MODE
+            </summary>
+        </member>
         <member name="F:CitizenFX.Server.Native.Hash.IS_PLAYER_USING_SUPER_JUMP">
             <summary>
             IS_PLAYER_USING_SUPER_JUMP
@@ -5999,7 +6112,13 @@
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.LOAD_PLAYER_COMMERCE_DATA_EXT">
             <summary>
-            Requests the commerce data from Tebex for the specified player, including the owned SKUs. Use `IS_PLAYER_COMMERCE_INFO_LOADED` to check if it has loaded.
+            Requests the commerce data from Tebex for the specified player, including the owned SKUs.
+            
+            Use [`IS_PLAYER_COMMERCE_INFO_LOADED_EXT`](#\_0x1D14F4FE) to check if it has loaded.
+            
+            This will not automatically update whenever a client purchases a package, if you want to fetch new purchases you will need to call this native again.
+            
+            This native will temporarily cache the players commerce data for 10 seconds, a call to this native after 10 seconds will re-fetch the players commerce data.
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.LOAD_RESOURCE_FILE">
